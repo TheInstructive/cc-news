@@ -6,7 +6,6 @@ const collections = [
   {id: "1009732055648714813", slug:"cronos-cruisers", name: "Cronos Cruisers", image: require('./images/collections/CronosCruisers.png'), tag: "nft, gamefi" },
   {id: "913035213670612992", slug:"croskull", name: "CroSkull", image: require('./images/collections/croskull.png'), tag: "nft, gamefi" },
   {id: "944556573005590579", slug:"argonauts", name: "Argonauts", image: require('./images/collections/argonauts.png'), tag: "nft, gamefi" },
-  {id: "896483719295156274", slug:"cronos-chimp-club", name: "Cronos Chimp Club", image: require('./images/collections/cronoschimp.png'), tag: "nft" },
   {id: "961691083333595167", slug:"gangverse", name: "Gangverse Social Club", image: require('./images/collections/Gangverse.png'), tag: "nft" },
   {id: "1044839682057453639", slug:"eyeball", name: "Eyeball Games", image: require('./images/collections/Eyeball.png'), tag: "nft, gamefi" },
   {id: "912620482031939599", slug:"dgpals", name: "D.G.Pals", image: require('./images/collections/DGPALS.png'), tag: "nfti gamefi" },
