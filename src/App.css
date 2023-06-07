@@ -952,6 +952,42 @@ height: 50%;
   width: 40px;
 }
 
+.mobile-app-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--blue);
+
+}
+
+.mobile-app{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-app p {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 600;
+  color: var(--both-white);
+  width: 90%;
+  padding: 1em;
+}
+
+.mobile-app img{
+  height: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-app b{
+  color: var(--both-white);
+}
+
 
 @media only screen and (max-width: 1000px) {
   .modal-container{

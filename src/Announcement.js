@@ -63,6 +63,13 @@ export default function Announcement() {
 
         </div>
 
+        <div style={{marginTop:'1em'}} className='mobile-app-wrapper'>
+          <div className='mobile-app'>
+            <p>Download the <b>Cronos.News</b> Mobile App to receive instant notifications from collections!</p>
+            <a href='https://play.google.com/store/apps/details?id=news.cronos' target='_blank'><img src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></img></a>
+          </div>
+          </div>
+
         <div className='news-container'>
             <h1>NEWS FROM <b>{collection.name}</b></h1>
             <div className='news-table'>

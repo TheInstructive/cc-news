@@ -47,6 +47,12 @@ useEffect(() => {
     
   return (
       <div className='newsletter-container'>
+        <div className='mobile-app-wrapper'>
+          <div className='mobile-app'>
+            <p>Download the <b>Cronos.News</b> Mobile App to receive instant notifications from collections!</p>
+            <a href='https://play.google.com/store/apps/details?id=news.cronos' target='_blank'><img src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></img></a>
+          </div>
+          </div>
           <h1>SELECT A COLLECTION TO SEE ANNOUNCEMENTS</h1>
           <input placeholder='SEARCH' type="text" value={searchTerm} onChange={handleSearch} />
           <p id='bot-msg'>Looking to showcase your project on our platform? If you're a project owner, <Link to='/bot'>click here to get started!</Link></p>
