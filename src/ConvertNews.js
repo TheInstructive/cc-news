@@ -76,7 +76,7 @@ function convertNewsNode(node) {
     }
 
     if (node.type === 'emoji') {
-        return <img src={node.url} alt={node.name} />
+        return <img src={node.url || ('https://cdn.discordapp.com/emojis/' + node.id)} title={node.name} />
     }
 
     if (node.type === 'codeBlock') {
