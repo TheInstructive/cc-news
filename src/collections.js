@@ -18,6 +18,8 @@ const collections = [
   {id: "1041284222507302912", slug:"the-pogo", name: "The Pogo", image: require('./images/collections/pogo.png'), tag: "NFT"},
   {id: "1056245905994559595", slug:"skully-x", name: "Cr00ts / Skully-X", image: require('./images/collections/skullyx.png'), tag: "NFT"},
   {id: "1115960635856007188", slug:"cropepe", name: "CroPepe", image: require('./images/collections/cropepe.png'), tag: "NFT" },
+  {id: "915078686934458388", slug:"grind-guild", name: "The Grind Guild", image: require('./images/collections/grind-guild.png'), tag: "other" },
+  {id: "1115960635856007188", slug:"cronos-towers", name: "Cronos Towers", image: require('./images/collections/cronostowers.png'), tag: "NFT" },
   {id: "921711758484328458", slug:"trooprz", name: "Trooprz", image: require('./images/collections/Trooprz.png'), tag: "nft" },
   {id: "1016711439131623454", slug:"bored-candy", name: "Bored Candy", image: require('./images/collections/BoredCandy.png'), tag: "nft, gamefi" },
   {id: "969658754838720556", slug:"crogenft", name: "CrogeNFT", image: require('./images/collections/CrogeNFT.png'), tag: "nft, gamefi" },
