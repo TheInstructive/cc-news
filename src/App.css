@@ -619,6 +619,10 @@ height: 50%;
   width: 20%;
 }
 
+.collection-item img{
+  filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.7));
+}
+
 .newsletter-container h1{
   max-width: 90%;
   white-space:pre-wrap;
