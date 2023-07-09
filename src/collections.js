@@ -20,6 +20,7 @@ const collections = [
   {id: "1115960635856007188", slug:"cropepe", name: "CroPepe", image: require('./images/collections/cropepe.png'), tag: "NFT" },
   {id: "915078686934458388", slug:"grind-guild", name: "The Grind Guild", image: require('./images/collections/grind-guild.png'), tag: "other" },
   {id: "1079081330182209587", slug:"cronos-towers", name: "Cronos Towers", image: require('./images/collections/cronostowers.png'), tag: "NFT" },
+  {id: "1040029417239482470", slug:"underground-pixels", name: "Underground Pixels", image: require('./images/collections/undergroundpixels.png'), tag: "NFT" },
   {id: "1085832552461373450", slug:"p00pium", name: "P00pium", image: require('./images/collections/P00pium.png'), tag: "NFT" },
   {id: "921711758484328458", slug:"trooprz", name: "Trooprz", image: require('./images/collections/Trooprz.png'), tag: "nft" },
   {id: "1016711439131623454", slug:"bored-candy", name: "Bored Candy", image: require('./images/collections/BoredCandy.png'), tag: "nft, gamefi" },
