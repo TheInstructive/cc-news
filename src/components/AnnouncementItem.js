@@ -15,6 +15,7 @@ export default function AnnouncementItem(props) {
     const content = convertNews(announcementDesc);
     const announcementID = props.annouID
     const getslug = props.giveSlug
+    const getPage = props.getPage
 
     function nextImage(){
         if(imageNum === announcementImages.length-1){return}
@@ -64,7 +65,7 @@ export default function AnnouncementItem(props) {
         </div>
         <h3 ref={myRef} >{props.announcementDate}</h3>
         <button onClick={announcementDetails}>{showDetails ? "HIDE" : "SHOW" }</button>
-        <Link id='getlink' to={`/${getslug}/${announcementID}`}><FontAwesomeIcon size='1x' icon={faLink} /></Link>
+        <Link id='getlink' to={`/${getslug}/${getPage}/${announcementID}`}><FontAwesomeIcon size='1x' icon={faLink} /></Link>
         </div>
         
         {showDetails &&

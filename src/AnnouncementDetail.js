@@ -1,11 +1,11 @@
+import "./App.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { bySlug } from "./collections";
 import {convertNews} from './ConvertNews'
-import "./App.css";
+import {fetchNewsData, fetchCollectionData} from './FetchData'
+
 
 import {
-  EmailShareButton,
   FacebookShareButton,
   TelegramShareButton,
   TwitterShareButton,
@@ -13,53 +13,53 @@ import {
 } from "react-share";
 
 import {
-  EmailIcon,
   FacebookIcon,
-  FacebookMessengerIcon,
-  HatenaIcon,
-  InstapaperIcon,
-  LineIcon,
-  LinkedinIcon,
-  LivejournalIcon,
-  MailruIcon,
-  OKIcon,
-  PinterestIcon,
-  PocketIcon,
-  RedditIcon,
   TelegramIcon,
-  TumblrIcon,
   TwitterIcon,
-  ViberIcon,
-  VKIcon,
-  WeiboIcon,
   WhatsappIcon,
-  WorkplaceIcon
 } from "react-share";
 
 export default function AnnouncementDetail() {
   const { slug } = useParams();
   const { annouid } = useParams();
-  const collection = bySlug(slug);
-  const [page, setPage] = useState(0);
+  const { page } = useParams();
   const [data, setData] = useState(null);
   const [imageNum, setimageNum] = useState(0)
+  const [collection, setCollection] = useState(null);
 
   const [announcemenetContent, setAnnouncemenetContent] = useState("");
 
   useEffect(() => {
-    fetch(
-      `https://mellifluous-centaur-e6602b.netlify.app/news?id=${collection.id}&page=${page}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter((item) => item.id === annouid);
-        console.log(filteredData);
+    console.log(slug)
+    const fetchCollection = async () => {
+      try {
+        const collectionData = await fetchCollectionData();
+        setCollection(collectionData.filter(col => col.slug === slug)[0]);
+        console.log(collectionData)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+    fetchCollection();
+  }, []);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const newsData = await fetchNewsData(collection.id, page);
+        const filteredData = newsData.filter((item) => item.id === annouid);
         setData(filteredData);
         const content = convertNews(filteredData[0].content);
         setAnnouncemenetContent(content);
-      })
-      .catch((error) => console.error(error));
-  }, [collection.id, page]);
+
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+    if (collection) { fetchNews(); }
+  }, [collection, page]);
 
   function nextImage(){
     if(imageNum === data[0].media.length-1){return}
@@ -79,7 +79,7 @@ export default function AnnouncementDetail() {
   const currentUrl = window.location.href;
 
 
-
+if(collection && data){
   return (
     <>
       <div className="news-details">
@@ -91,7 +91,7 @@ export default function AnnouncementDetail() {
           </div>
 
         <div className="news-header">
-          <img src={collection.image}></img>
+          <img src={`https://collections.cronos.news/${collection.image}`}></img>
           <div className="news-header-details">
           {data &&
           <>
@@ -167,4 +167,5 @@ export default function AnnouncementDetail() {
       </>
     
   );
+}
 }

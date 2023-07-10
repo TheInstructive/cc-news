@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AnnouncementItem from './components/AnnouncementItem';
 import { useParams } from 'react-router-dom';
-import { bySlug } from './collections';
-import miniCollections from './collections';
 import { useNavigate } from 'react-router-dom';
+import {fetchNewsData, fetchCollectionData} from './FetchData'
 
 function getDate(item) {
   return item.timestamp ? new Date(item.timestamp).toLocaleString() : "-";
@@ -15,16 +14,37 @@ export default function Announcement() {
   const navigate = useNavigate();
   const { slug } = useParams();
   const [data, setData] = useState(null);
-  const collection = bySlug(slug);
   const [page, setPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [collection, setCollection] = useState(null);
+  const [collections, setCollections] = useState([]);
 
 
   useEffect(() => {
-    fetch(`https://mellifluous-centaur-e6602b.netlify.app/news?id=${collection.id}&page=${page}`)
-      .then(response => response.json())
-      .then(data => setData(data));
-  }, [collection.id, page]);
+    const fetchCollection = async () => {
+      try {
+        const collectionData = await fetchCollectionData();
+        setCollection(collectionData.filter(col => col.slug === slug)[0]);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+  
+    fetchCollection();
+  }, [slug, page]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const newsData = await fetchNewsData(collection.id, page);
+        setData(newsData);  
+      } catch (error) {
+        console.log(error)
+      }
+    };
+  
+     fetchNews();
+  }, [collection, page]);
 
   const handleDetailsToggle = (announcementId) => {
     setCurrentDetailsId(currentDetailsId === announcementId ? null : announcementId);
@@ -34,10 +54,22 @@ export default function Announcement() {
     setSearchTerm(event.target.value);
   };
 
-  const filteredCollections = miniCollections.filter((collection) => {
+  useEffect(() => {
+    const fetchCollection = async () => {
+      try {
+        const collectionData = await fetchCollectionData();
+        setCollections(collectionData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCollection();
+  }, []);
+
+  const filteredCollections = collections.filter((collection) => {
     return collection.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
-
 
   const navigateToAnnouncement = (slug) => {
     navigate(`/${slug}`)
@@ -47,7 +79,8 @@ export default function Announcement() {
     setPage(0);
     navigateToAnnouncement(slug);
   } 
-
+  
+if(collection && data){
   return (
     <div className='main-container'>
         <div className='news-collections'>
@@ -55,7 +88,7 @@ export default function Announcement() {
             {filteredCollections.map((collection) => (
             
              <button onClick={() => handleButtonClick(collection.slug)} className='news-item' key={collection.slug}>
-             <img src={collection.image} alt={collection.name}></img>
+             <img src={`https://collections.cronos.news/${collection.image}`} alt={collection.name}></img>
              <h2>{collection.name}</h2>
              </button>
              
@@ -77,7 +110,7 @@ export default function Announcement() {
             data.map((announcement) => (
                 <AnnouncementItem
                     key={announcement.id}
-                    collectionImage={collection.image}
+                    collectionImage={`https://collections.cronos.news/${collection.image}`}
                     annouImages={announcement.media}
                     announcementTitle={announcement.author.tag}
                     announcementDate={getDate(announcement)}
@@ -87,6 +120,7 @@ export default function Announcement() {
                     onDetailsToggle={() => handleDetailsToggle(announcement.id)}
                     annouID = {announcement.id}
                     giveSlug = {slug}
+                    getPage = {page}
                 />
             ))
         )}
@@ -105,4 +139,5 @@ export default function Announcement() {
         </div>
     </div>
   )
+}
 }

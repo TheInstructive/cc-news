@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Announcement />,
       },
       {
-        path: "/:slug/:annouid",
+        path: "/:slug/:page/:annouid",
         element: <AnnouncementDetail />,
       },
       {
