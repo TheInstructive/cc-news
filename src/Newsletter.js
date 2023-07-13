@@ -48,7 +48,7 @@ export default function Newsletter() {
 
   useEffect(() => {
     const filteredBySearch = collections.filter((collection) =>
-      collection.name.toLowerCase().includes(searchTerm)
+      collection.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const filteredByTags =
